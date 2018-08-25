@@ -1,0 +1,71 @@
+<html>
+<head>
+ <style>
+   img
+   {
+   height:100;
+   width:173;
+   border-radius:10px;
+   }
+   a:hover {
+    background-color:white;
+}
+  
+ </style>
+</head>
+<body ng-app="adriza" background="image22.jpg">
+<div align="center">
+<h2>Jewellery store created by <u><span style="color:blue;"><i>Adriza Banerjee</i></span></u></h2>
+</div>
+<hr/>
+<div ng-controller="ProductController" align="center">
+
+Search :<input type="text" placeholder="search" ng-model="searchText"/>
+Select Min Price :
+<select ng-model="x">
+<option>8000</option>
+<option>9000</option>
+<option>10000</option>
+<!--<option>4000</option>
+<option>5000</option>-->
+</select>
+
+Select Max Price :
+<select ng-model="y">
+<option>11000</option>
+<option>12000</option>
+<option>15000</option>
+<option>16000</option>
+<option>20000</option>
+<!--<option>10000</option>-->
+</select>
+<br></br>
+
+<table width="400" border="1" align="center">
+<tr>
+<th><a src='#' ng-click="p='pname'; q=!q;">Product Name</a></th>
+<th><a src='#' ng-click="p='brand';q=!q;">Brand</a></th>
+<th>Price</th>
+<th>Picture</th>
+</tr>
+</hr>
+<tr ng-repeat="item in products|rangeFilter:x:y |orderBy:p:q |filter:searchText">
+<td>{{item.pname}}</td>
+<td>{{item.brand}}</td>
+<td>{{item.price}}</td>
+<td><img src="{{item.picture}}"/></td>
+</tr>
+</table>
+</div>
+<script>
+var obj=angular.module("adriza",[]);
+obj.controller("ProductController",function($scope)
+{
+$scope.p="pname";
+$scope.q="false";
+});
+</script>
+<script src="angular.js"></script>
+<script src="app7.js"></script>
+</body>
+</html>
